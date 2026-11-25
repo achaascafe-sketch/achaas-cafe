@@ -187,19 +187,7 @@ function applyCafeSettings(settings) {
         });
     });
 
-    const logo = safeUrl(settings.logo_url);
-    if (logo) {
-        const brand = document.querySelector(".site-header .brand");
-        if (brand && !brand.querySelector(".brand-logo")) {
-            const img = document.createElement("img");
-            img.className = "brand-logo";
-            img.alt = "";
-            img.src = logo;
-            img.addEventListener("error", () => img.remove(), { once: true });
-            brand.prepend(img);
-        }
-    }
-
+   
     const desktopBanner = safeUrl(settings.homepage_banner_url);
     const mobileBanner = safeUrl(settings.mobile_banner_url);
     const heroImage = document.querySelector(".hero-image");
