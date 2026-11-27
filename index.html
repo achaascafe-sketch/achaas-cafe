@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#142a20">
+<meta name="description" content="Achaas Cafe - Good Food, Good Mood, Always Fresh. Explore our menu and place your order online.">
+<title>Achaas Cafe | Good Food, Good Mood</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%98%95%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Achaas Cafe | Good Food, Good Mood">
+<meta property="og:description" content="Explore our menu and place your order online.">
+<script>
+/* Apply the last published theme immediately so the page never flashes the wrong colours. */
+try{var v=JSON.parse(localStorage.getItem("achaasCafeThemeVars"));if(v){for(var k in v){document.documentElement.style.setProperty(k,v[k]);}}}catch(e){}
+</script>
+<link rel="stylesheet" href="style.css?v=r5-status">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="script.js?v=r5-status" defer></script>
+
+</head>
+
+<body>
+
+<noscript><p style="padding:20px;text-align:center;">Please turn on JavaScript to view the menu and place an order.</p></noscript>
+
+<!-- =====================================================
+     HEADER AND NAVIGATION
+     ===================================================== -->
+
+<header class="site-header">
+    <div class="container header-inner">
+
+        <a href="#" class="brand" onclick="showView('home'); return false;">
+            ACHAAS <span>CAFE</span>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Main navigation">
+            <button class="nav-link" onclick="showView('home')">Home</button>
+            <button class="nav-link" onclick="showView('about')">About Us</button>
+            <button class="nav-link" onclick="showView('gallery')">Gallery</button>
+            <button class="nav-link" onclick="showView('contact')">Contact Us</button>
+            <button class="nav-link" onclick="showView('track')">Track Order</button>
+        </nav>
+
+        <div class="header-actions">
+            <button class="bag-button" onclick="openCart()" aria-label="Open shopping bag">
+                <span class="bag-icon" aria-hidden="true">🛍️</span><span class="bag-label">Shopping Bag</span>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                onclick="toggleMobileMenu()">
+                ☰
+            </button>
+        </div>
+    </div>
+
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <button onclick="showView('home'); closeMobileMenu()">Home</button>
+        <button onclick="showView('about'); closeMobileMenu()">About Us</button>
+        <button onclick="showView('gallery'); closeMobileMenu()">Gallery</button>
+        <button onclick="showView('contact'); closeMobileMenu()">Contact Us</button>
+        <button onclick="showView('track'); closeMobileMenu()">Track Order</button>
+        <button onclick="openMenu(); closeMobileMenu()">Order Now</button>
+        <button onclick="openCart(); closeMobileMenu()">Shopping Cart</button>
+    </nav>
+</header>
+
+
+<main>
+
+<!-- =====================================================
+     1. HOMEPAGE
+     ===================================================== -->
+
+<section class="hero page-view" id="homeView">
+    <div class="container">
+        <div class="hero-panel">
+
+            <div class="hero-brand">
+                ACHAAS <span>CAFE</span>
+            </div>
+
+            <!--
+              Add these three image files:
+              images/phonehome.jpg
+              images/tablethome.jpg
+              images/laptophome.jpg
+            -->
+
+            <picture class="hero-picture">
+
+                <source
+                    media="(min-width: 1025px)"
+                    srcset="images/laptophome.jpg">
+
+                <source
+                    media="(min-width: 600px)"
+                    srcset="images/tablethome.jpg">
+
+                <img
+                    src="images/phonehome.jpg"
+                    alt="Welcome to Achaas Cafe"
+                    class="hero-image"
+                    onerror="this.style.display='none'">
+
+            </picture>
+
+            <h1 class="hero-heading">
+                A Taste Worth<br>
+                Remembering
+            </h1>
+
+            <p class="hero-description">
+                Discover delicious food, refreshing drinks
+                and memorable moments.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="openMenu()">
+                    Order Now
+                </button>
+
+                <button class="btn btn-outline" onclick="showView('contact')">
+                    Contact Us
+                </button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- =====================================================
+     2. ABOUT US
+     ===================================================== -->
+
+<section class="page-view hidden" id="aboutView">
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-eyebrow">Welcome to Achaas Cafe</div>
+            <h1>About Us</h1>
+            <p>Good Food • Good Mood • Always Fresh</p>
+        </div>
+
+        <div class="panel">
+            <img
+                src="images/about-cafe.jpg"
+                alt="Achaas Cafe"
+                class="about-photo"
+                onerror="this.style.display='none'">
+
+            <div class="about-copy">
+                <h2 style="color:var(--gold); margin-bottom:12px;">
+                    Made with Love
+                </h2>
+
+                <p>
+                    Welcome to Achaas Cafe. Discover delicious food,
+                    refreshing drinks and memorable moments.
+                    We look forward to welcoming you.
+                </p>
+
+                <p style="margin-top:15px;">
+                    Enjoy our menu and place your order easily
+                    through our website and WhatsApp.
+                </p>
+
+                <button
+                    class="btn btn-primary"
+                    style="margin-top:23px;"
+                    onclick="openMenu()">
+                    Explore Our Menu
+                </button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     3. GALLERY
+     ===================================================== -->
+
+<section class="page-view hidden" id="galleryView">
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-eyebrow">Our Photos</div>
+            <h1>Gallery</h1>
+            <p>Explore Achaas Cafe and our food.</p>
+        </div>
+
+        <div class="gallery-grid" id="galleryGrid">
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-1.jpg"
+                     alt="Cafe food"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Food Photography</div>
+                <div class="gallery-caption">Our Food</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-2.jpg"
+                     alt="Cafe interior"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Cafe Photo</div>
+                <div class="gallery-caption">Our Cafe</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-3.jpg"
+                     alt="Sandwiches"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Food Photography</div>
+                <div class="gallery-caption">Sandwiches</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-4.jpg"
+                     alt="Burgers"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Food Photography</div>
+                <div class="gallery-caption">Burgers</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-5.jpg"
+                     alt="Snacks"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Food Photography</div>
+                <div class="gallery-caption">Snacks</div>
+            </div>
+
+            <div class="gallery-card">
+                <img src="images/gallery/gallery-6.jpg"
+                     alt="Beverages"
+                     onerror="this.style.display='none';this.parentElement.classList.add('no-photo')">
+                <div class="photo-placeholder">Food Photography</div>
+                <div class="gallery-caption">Beverages</div>
+            </div>
+
+        </div>
+
+        <button
+            class="btn btn-primary"
+            style="margin-top:25px;"
+            onclick="openMenu()">
+            Order Now
+        </button>
+    </div>
+</section>
+
+
+<!-- =====================================================
+     4. CONTACT US
+     ===================================================== -->
+
+<section class="page-view hidden" id="contactView">
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-eyebrow">Get in Touch</div>
+            <h1>Contact Us</h1>
+            <p>We look forward to hearing from you.</p>
+        </div>
+
+        <div class="panel contact-list">
+
+            <div class="contact-item">
+                <strong>Cafe Name</strong>
+                Achaas Cafe
+            </div>
+
+            <div class="contact-item">
+                <strong>WhatsApp / Phone</strong>
+                <span data-cafe="phone">+91 9108872368</span>
+            </div>
+
+            <div class="contact-item">
+                <strong>Location</strong>
+                <span data-cafe="address">Near Smart Bazaar, Surathkal</span>
+            </div>
+
+            <div class="contact-item hidden" data-cafe-row="hours">
+                <strong>Opening Hours</strong>
+                <span data-cafe="hours" class="pre-line"></span>
+            </div>
+
+            <div class="contact-item">
+                <strong>Delivery</strong>
+                Within 5 km of Achaas Cafe.
+                No delivery charge. Address confirmation is
+                handled directly by the cafe.
+            </div>
+
+            <a
+                class="btn btn-primary btn-block"
+                href="https://wa.me/919108872368"
+                data-cafe-wa
+                target="_blank"
+                rel="noopener">
+                Contact Achaas Cafe on WhatsApp
+            </a>
+
+            <a class="btn btn-outline btn-block hidden" data-cafe-maps href="#" target="_blank" rel="noopener">
+                Open in Google Maps
+            </a>
+
+            <div class="social-links">
+                <a class="btn btn-outline btn-small hidden" data-cafe-social="instagram" href="#" target="_blank" rel="noopener">Instagram</a>
+                <a class="btn btn-outline btn-small hidden" data-cafe-social="facebook" href="#" target="_blank" rel="noopener">Facebook</a>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     5. SHOPPING BAG / MENU
+     ===================================================== -->
+
+<section class="page-view hidden" id="menuView">
+    <div class="container">
+
+        <!-- Main category list -->
+
+        <div id="categoryListPanel">
+
+            <div class="section-heading">
+                <div class="section-eyebrow">Achaas Cafe</div>
+                <h1>Our Menu</h1>
+                <p>Choose a category and explore our food.</p>
+            </div>
+
+            <div class="category-grid" id="categoryGrid"></div>
+
+            <div style="margin-top:25px;">
+                <button class="btn btn-primary" onclick="openCart()">
+                    Go to Shopping Cart
+                </button>
+            </div>
+        </div>
+
+
+        <!-- Individual category items -->
+
+        <div id="categoryDetailPanel" class="hidden">
+
+            <div class="category-topbar">
+                <div>
+                    <div class="section-eyebrow">Achaas Cafe Menu</div>
+                    <h1 id="selectedCategoryTitle">Category</h1>
+                </div>
+
+                <button
+                    class="btn btn-outline btn-small"
+                    onclick="showCategories()">
+                    ← All Categories
+                </button>
+            </div>
+
+            <div class="product-grid" id="productGrid"></div>
+
+            <div class="menu-bottom-actions">
+
+                <button
+                    class="btn btn-primary"
+                    onclick="openCart()">
+                    Move to Cart
+                </button>
+
+                <button
+                    class="btn btn-outline"
+                    onclick="showCategories()">
+                    Go Back to Menu – Add More Items
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- =====================================================
+     6. SHOPPING CART AND CHECKOUT
+     ===================================================== -->
+
+<section class="page-view hidden" id="trackView">
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-eyebrow">Order Status</div>
+            <h1>Track Your Order</h1>
+            <p>Enter your order number and the phone number you used when ordering.</p>
+        </div>
+
+        <form id="trackForm" class="track-form" onsubmit="trackOrder(event)">
+
+            <div class="form-group">
+                <label for="trackOrderNumber">Order number</label>
+                <input id="trackOrderNumber" inputmode="numeric" maxlength="12" autocomplete="off" placeholder="Example: 1043" required>
+            </div>
+
+            <div class="form-group">
+                <label for="trackPhone">Phone number</label>
+                <input id="trackPhone" type="tel" inputmode="tel" maxlength="20" autocomplete="tel" placeholder="Phone number used for the order" required>
+            </div>
+
+            <button class="btn btn-primary" id="trackButton" type="submit">Check Status</button>
+
+        </form>
+
+        <p id="trackMessage" class="form-note track-error" role="status" aria-live="polite"></p>
+
+        <div id="trackResult" class="track-result hidden" aria-live="polite"></div>
+
+    </div>
+</section>
+
+
+<section class="page-view hidden" id="cartView">
+    <div class="container">
+
+        <div class="section-heading">
+            <div class="section-eyebrow">Your Selection</div>
+            <h1>Shopping Cart</h1>
+            <p>Review your selected items before placing your order.</p>
+        </div>
+
+        <div id="orderSuccessPanel" class="pending-order hidden" role="status" aria-live="polite">
+            <h3>Order received successfully</h3>
+            <p id="orderSuccessMessage">Your order has been sent to Achaas Cafe.</p>
+            <button type="button" id="trackNowButton" class="btn btn-outline btn-small hidden" onclick="showView('track')">Track this order</button>
+        </div>
+
+
+        <p id="cartLoading" class="form-note hidden" role="status">Loading your cart…</p>
+
+        <div id="emptyCart" class="empty-cart hidden">
+            <div class="empty-icon">🛍️</div>
+            <h2>Your Shopping Cart is Empty</h2>
+            <p>Add some delicious food from our menu.</p>
+            <button class="btn btn-primary" onclick="openMenu()">
+                Explore Menu
+            </button>
+        </div>
+
+
+        <div id="cartContent">
+
+            <div class="cart-layout">
+
+                <div>
+                    <div class="cart-items" id="cartItems"></div>
+
+                    <button
+                        class="btn btn-outline"
+                        style="margin-top:16px;"
+                        onclick="openMenu()">
+                        + Continue Shopping
+                    </button>
+                </div>
+
+
+                <aside class="cart-summary">
+                    <h2>Order Summary</h2>
+
+                    <div class="summary-row">
+                        <span>Food Subtotal</span>
+                        <strong id="cartSubtotal">₹0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Delivery Charge</span>
+                        <strong id="deliveryChargeValue">₹0</strong>
+                    </div>
+                    
+                    
+<div class="coupon-box" style="margin:18px 0;">
+    <label for="couponCode"><strong>Have a Coupon Code?</strong></label>
+
+    <div style="display:flex; gap:8px; margin-top:8px;">
+        <input
+            type="text"
+            id="couponCode"
+            placeholder="Enter coupon code"
+            maxlength="40"
+            autocomplete="off"
+            style="flex:1; min-width:0; text-transform:uppercase;">
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            id="applyCouponButton"
+            onclick="applyCoupon()">
+            Apply
+        </button>
+    </div>
+
+    <p id="couponMessage"
+       class="form-note"
+       role="status"
+       aria-live="polite"
+       style="margin-top:8px;">
+    </p>
+</div>
+
+<div class="summary-row" id="discountRow" style="display:none;">
+    <span>Coupon Discount</span>
+    <strong id="couponDiscount">-₹0</strong>
+</div>
+
+
+                    <span class="free-delivery" id="freeDeliveryNote">
+                        ✓ Free Delivery – No Delivery Charge
+                    </span>
+
+                    <div class="summary-row total">
+                        <span>Total</span>
+                        <span id="cartTotal">₹0</span>
+                    </div>
+
+                    <p class="form-note" style="margin-top:10px;">
+                        Delivery is available within 5 km.
+                        The cafe confirms the address.
+                    </p>
+
+                    <button
+                        class="btn btn-primary btn-block"
+                        style="margin-top:20px;"
+                        id="detailsButton"
+                        onclick="toggleCheckout()">
+                        Add Your Details to Order
+                    </button>
+                </aside>
+
+            </div>
+
+
+            <!-- Customer information -->
+
+            <div id="checkoutPanel" class="panel checkout-panel hidden">
+
+                <div class="section-heading">
+                    <h2>Customer Details</h2>
+                    <p>Please enter your information for delivery.</p>
+                </div>
+
+                <form id="customerForm" onsubmit="return false;">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="customerName">
+                                Customer Name *
+                            </label>
+                            <input
+                                id="customerName"
+                                name="customerName"
+                                type="text"
+                                placeholder="Enter your name"
+                                autocomplete="name"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerPhone">
+                                Mobile Number *
+                            </label>
+                            <input
+                                id="customerPhone"
+                                name="customerPhone"
+                                type="tel"
+                                inputmode="tel"
+                                maxlength="20"
+                                placeholder="Enter mobile number"
+                                autocomplete="tel"
+                                required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerWhatsapp">
+                                WhatsApp Number (optional)
+                            </label>
+                            <input
+                                id="customerWhatsapp"
+                                name="customerWhatsapp"
+                                type="tel"
+                                inputmode="tel"
+                                maxlength="20"
+                                placeholder="Leave empty if same as phone number"
+                                autocomplete="off">
+                        </div>
+
+                        <div class="form-group full">
+                            <label for="customerAddress">
+                                Delivery Address *
+                            </label>
+                            <textarea
+                                id="customerAddress"
+                                name="customerAddress"
+                                placeholder="Enter your complete delivery address"
+                                autocomplete="street-address"
+                                required></textarea>
+                        </div>
+
+                    </div>
+
+
+                    <h3 class="checkout-section-title">
+                        Food Preferences
+                    </h3>
+
+                    <p class="form-note" style="margin-bottom:13px;">
+                        Select any preferences you would like the cafe
+                        to know about.
+                    </p>
+
+                    <div class="preference-grid">
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="Less spicy">
+                            Less spicy
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="Mild / no spicy">
+                            Mild / no spicy
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="Less sugar">
+                            Less sugar
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="No added sugar">
+                            No added sugar
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="Less salt">
+                            Less salt
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="Extra crispy">
+                            Extra crispy
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="No onion">
+                            No onion
+                        </label>
+
+                        <label class="preference-option">
+                            <input type="checkbox" name="preference"
+                                   value="No garlic">
+                            No garlic
+                        </label>
+
+                    </div>
+
+
+                    <div class="form-group" style="margin-top:17px;">
+                        <label for="foodInstructions">
+                            Other Food Preferences / Special Instructions
+                        </label>
+
+                        <textarea
+                            id="foodInstructions"
+                            placeholder="Example: Please make my sandwich less spicy and use less sugar."></textarea>
+                    </div>
+
+
+                    <label class="preference-option remember-option">
+                        <input type="checkbox" id="rememberDetails" checked>
+                        Remember my name, phone and address on this device
+                    </label>
+
+                    <h3 class="checkout-section-title">
+                        Delivery Information
+                    </h3>
+
+                    <div class="delivery-note">
+                        <strong id="deliveryNoteTitle">Free Delivery – ₹0</strong><br>
+                        Delivery is available within 5 km of Achaas Cafe.
+                        Please provide your complete address.
+                        The cafe will contact you to confirm your delivery.
+                    </div>
+
+
+                    <h3 class="checkout-section-title">
+                        Final Order Total
+                    </h3>
+
+                    <div class="summary-row total">
+                        <span>Total Amount</span>
+                        <span id="checkoutTotal">₹0</span>
+                    </div>
+
+                    <label class="preference-option consent-option">
+                        <input type="checkbox" id="privacyConsent">
+                        <span>I agree that Achaas Cafe may use my name, phone number, WhatsApp number and address to prepare, deliver and update me about my order.</span>
+                    </label>
+
+                    <details class="privacy-notice">
+                        <summary>Read the privacy notice</summary>
+                        <p>We collect your name, phone number, optional WhatsApp number and delivery address only to prepare and deliver your order and to tell you about its status. Only the cafe staff can see these details. They are stored securely and kept only as long as needed for order records. To ask for a correction or deletion, please contact the cafe using the details on the Contact page.</p>
+                    </details>
+
+                    <button
+                        type="button"
+                        id="placeOrderButton"
+                        class="btn btn-primary btn-block"
+                        style="margin-top:20px;"
+                        onclick="placeWebsiteOrder()">
+                        Place Order
+                    </button>
+
+                    <p class="form-note" style="margin-top:13px;">
+                        Your order will be submitted securely to Achaas Cafe.
+                        The cafe will contact you to confirm your order.
+                    </p>
+
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="site-footer">
+    <div class="container">
+
+        <div class="footer-inner">
+
+            <div>
+                <div class="footer-brand">
+                    ACHAAS <span>CAFE</span>
+                </div>
+
+                <p style="margin-top:10px;">
+                    Good Food • Good Mood • Always Fresh
+                </p>
+
+                <p style="margin-top:8px;">
+                    Made with Love.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="#" onclick="showView('home'); return false;">Home</a>
+                <a href="#" onclick="showView('about'); return false;">About Us</a>
+                <a href="#" onclick="showView('gallery'); return false;">Gallery</a>
+                <a href="#" onclick="showView('contact'); return false;">Contact Us</a>
+                <a href="#track" onclick="showView('track'); return false;">Track Order</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Order and Contact</h3>
+                <a href="#" onclick="openMenu(); return false;">Order Now</a>
+                <a href="#" onclick="openCart(); return false;">Shopping Cart</a>
+                <a href="https://wa.me/919108872368" data-cafe-wa
+                   target="_blank" rel="noopener">
+                    WhatsApp: <span data-cafe="phone">+91 9108872368</span>
+                </a>
+                <p data-cafe="address">Near Smart Bazaar, Surathkal</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © <span id="currentYear"></span> Achaas Cafe.
+            All rights reserved.
+        </div>
+
+    </div>
+</footer>
+
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+</body>
+</html>
